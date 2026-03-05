@@ -1,0 +1,54 @@
+{
+  "name": "n8n-nodes-zappy",
+  "version": "0.1.3",
+  "description": "n8n community node for Zappy WhatsApp API",
+  "keywords": [
+    "n8n-community-node-package"
+  ],
+  "license": "MIT",
+  "homepage": "https://dashboard.zappy.api.br",
+  "author": {
+    "name": "Firmo Tecnologia",
+    "email": "contato@firmo.tech"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firmo-tecnologia/n8n-nodes-zappy"
+  },
+  "engines": {
+    "node": ">=18.10"
+  },
+  "scripts": {
+    "build": "tsc && npm run copy:icons",
+    "copy:icons": "mkdir -p dist/nodes/Zappy dist/nodes/ZappyTrigger && cp nodes/Zappy/zappy.svg dist/nodes/Zappy/ && cp nodes/ZappyTrigger/zappy.svg dist/nodes/ZappyTrigger/",
+    "dev": "tsc --watch",
+    "lint": "eslint nodes credentials --ext .ts",
+    "lintfix": "eslint nodes credentials --ext .ts --fix",
+    "prepublishOnly": "npm run build && npm run lint"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/ZappyApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Zappy/Zappy.node.js",
+      "dist/nodes/ZappyTrigger/ZappyTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.56.0",
+    "n8n-workflow": "*",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
